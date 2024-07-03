@@ -40,8 +40,8 @@ jobs:
         retention-days: 30
         
     - name: Install allurectl
-        uses: allure-framework/setup-allurectl@v1
-        with:
-          allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
-          allure-token: ${{ secrets.ALLURE_TOKEN }}
-          allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
+      uses: allure-framework/setup-allurectl@v1
+      with:
+        allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
+        allure-token: ${{ secrets.ALLURE_TOKEN }}
+        allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
