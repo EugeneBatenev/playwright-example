@@ -9,6 +9,14 @@ on:
       ALLURE_USERNAME:
         description: "ALLURE_USERNAME service parameter. Leave blank"
         required: false
+
+env:
+  ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+  ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
+  ALLURE_ENDPOINT: https://hellooo.lt.aws.qameta.in/
+  ALLURE_PROJECT_ID: 2
+  ALLURE_RESULTS: allure-results
+  
 jobs:
   test:
     timeout-minutes: 60
@@ -30,3 +38,10 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+        
+    - name: Install allurectl
+        uses: allure-framework/setup-allurectl@v1
+        with:
+          allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
+          allure-token: ${{ secrets.ALLURE_TOKEN }}
+          allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
