@@ -30,18 +30,14 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test
-    - uses: actions/upload-artifact@v2
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
-        
     - name: Install allurectl
       uses: allure-framework/setup-allurectl@v1
       with:
         allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
         allure-token: ${{ secrets.ALLURE_TOKEN }}
-        allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
+        allure-project-id: ${{ env.ALLURE_PROJECT_ID }} 
+    - name: Run Playwright tests
+      run: allurectl watch -- npx playwright test
+    
+        
+    
