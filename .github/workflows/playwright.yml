@@ -1,4 +1,4 @@
-name: playwright tests example
+name: playwright tests example lol
 
 on:
   workflow_dispatch:
