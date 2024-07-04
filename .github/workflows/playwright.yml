@@ -9,14 +9,6 @@ on:
       ALLURE_USERNAME:
         description: "ALLURE_USERNAME service parameter. Leave blank"
         required: false
-      TEST_ENDPOINT:
-        description: "Endpoint for tests"
-        required: true
-        default: https://strong-turtle-100.lt.aws.qameta.in/
-      TEST_BROWSER:
-        description: "Browser for tests"
-        required: true
-        default: chrome
 
 env:
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
