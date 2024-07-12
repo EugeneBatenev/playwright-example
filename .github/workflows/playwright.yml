@@ -13,8 +13,8 @@ on:
 env:
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
-  ALLURE_ENDPOINT: https://skibidi.lt.aws.qameta.in/
-  ALLURE_PROJECT_ID: 5
+  ALLURE_ENDPOINT: https://benis.lt.aws.qameta.in/
+  ALLURE_PROJECT_ID: 1
   ALLURE_RESULTS: allure-results
   
 jobs:
