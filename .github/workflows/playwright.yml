@@ -8,7 +8,7 @@ on:
         required: false
       ALLURE_USERNAME:
         description: "ALLURE_USERNAME service parameter. Leave blank"
-        required: false
+        required: true
 
 env:
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
