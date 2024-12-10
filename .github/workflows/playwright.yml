@@ -38,7 +38,7 @@ jobs:
         allure-token: ${{ secrets.ALLURE_TOKEN }}
         allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
     - name: Log ALLURE_USERNAME
-      run: echo "ALLURE_USERNAME"
+      run: echo "ALLURE_USERNAME is:" ${{ github.event.inputs.ALLURE_USERNAME }}
     - name: Run Playwright tests
       run: allurectl watch -- npx playwright test
       env:
