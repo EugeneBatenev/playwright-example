@@ -27,6 +27,19 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: '14.x'
+    - name: Update package lists
+      run: sudo apt-get update -y
+    - name: Install missing dependencies
+      run: |
+        sudo add-apt-repository universe -y
+        sudo add-apt-repository multiverse -y
+        sudo apt-get update -y
+        sudo apt-get install -y \
+          libasound2 \
+          libicu72 \
+          libffi8 \
+          libx264-163 \
+          libjavascriptcoregtk-4.0-18 || true
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
@@ -44,6 +57,3 @@ jobs:
       env:
         TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
         TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
-    
-        
-    
