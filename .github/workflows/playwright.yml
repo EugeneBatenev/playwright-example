@@ -20,7 +20,7 @@ env:
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: mcr.microsoft.com/playwright:bionic
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
