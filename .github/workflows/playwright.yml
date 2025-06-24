@@ -44,6 +44,14 @@ jobs:
       env:
         TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
         TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
+
+    - name: Save TR as files
+      if: ${{ always() }}             
+      uses: actions/upload-artifact@v4
+      with:
+        name: allure-results-${{ github.run_id }}
+        path: ${{ env.ALLURE_RESULTS }}   
+        retention-days: 1
     
         
     
