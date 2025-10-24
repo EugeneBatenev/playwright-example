@@ -40,7 +40,7 @@ jobs:
     - name: Log ALLURE_USERNAME
       run: echo ${{ github.event.inputs.ALLURE_USERNAME }}
     - name: Run Playwright tests
-      run: allurectl watch --job-run-uid ${{ github.run_id }} -- npx playwright test
+      run: allurectl watch --job-run-uid "${{ github.run_id }}-${{ github.run_attempt }}" -- npx playwright test
       env:
         TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
         TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
