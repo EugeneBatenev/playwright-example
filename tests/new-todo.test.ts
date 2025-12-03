@@ -45,11 +45,11 @@ test.describe("New Todo", () => {
     await checkNumberOfTodosInLocalStorage(page, 2);
   });
 
-  @allure.manual
+  
   test("should clear text input field when an item is added", async ({
     page,
   }) => {
-
+      await allure.manual
       await page.locator(".new-todo").fill(TODO_ITEMS[0]);
       await page.locator(".new-todo").press("Enter");
       await expect(
