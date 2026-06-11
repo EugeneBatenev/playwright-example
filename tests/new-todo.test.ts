@@ -6,36 +6,29 @@ import {
   TODO_ITEMS,
   visitTestApp,
 } from "./test-utils";
-
-import { allure } from "allure-playwright";
+import { issue, tag } from "allure-js-commons";
 
 test.beforeEach(async ({ page }) => {
-
   await visitTestApp(page);
 });
 
 test.describe("New Todo", () => {
-  test("should allow me to add todo items", async ({ page },testInfo) => {
-
+  test("should allow me to add todo items", async ({ page }, testInfo) => {
     await testInfo.attach("TODO_ITEMS", {
       body: JSON.stringify(TODO_ITEMS),
       contentType: "application/json",
     });
 
-    
-      await page.locator(".new-todo").fill(TODO_ITEMS[0]);
-      await page.locator(".new-todo").press("Enter");
-    
+    await page.locator(".new-todo").fill(TODO_ITEMS[0]);
+    await page.locator(".new-todo").press("Enter");
 
     await expect(
       page.locator(".view label"),
       "Make sure the list only has one todo item."
     ).toHaveText([TODO_ITEMS[0]]);
 
-    
-      await page.locator(".new-todo").fill(TODO_ITEMS[1]);
-      await page.locator(".new-todo").press("Enter");
-    
+    await page.locator(".new-todo").fill(TODO_ITEMS[1]);
+    await page.locator(".new-todo").press("Enter");
 
     await expect(
       page.locator(".view label"),
@@ -45,14 +38,11 @@ test.describe("New Todo", () => {
     await checkNumberOfTodosInLocalStorage(page, 2);
   });
 
-  
-  test("should clear text input field when an item is added", async ({
-    page,
-  }) => {
-      await allure.manual
-      await page.locator(".new-todo").fill(TODO_ITEMS[0]);
-      await page.locator(".new-todo").press("Enter");
-      await expect(
+  test("should clear text input field when an item is added", async ({ page }) => {
+    await tag("manual");
+    await page.locator(".new-todo").fill(TODO_ITEMS[0]);
+    await page.locator(".new-todo").press("Enter");
+    await expect(
       page.locator(".new-todo"),
       "Check that input is empty."
     ).toBeEmpty();
@@ -62,21 +52,16 @@ test.describe("New Todo", () => {
   test("should append new items to the bottom of the list", async ({
     page,
   }) => {
-    allure.issue({ url: "https://qameta.io/", name: "qameta.io site" });
-    allure.tag("experemntal");
+    await issue("https://qameta.io/", "qameta.io site");
+    await tag("experimental");
 
+    await createDefaultTodos(page);
 
-      await createDefaultTodos(page);
+    await expect(page.locator(".todo-count")).toHaveText("3 items left");
+    await expect(page.locator(".todo-count")).toContainText("3");
+    await expect(page.locator(".todo-count")).toHaveText(/3/);
 
-
-      await expect(page.locator(".todo-count")).toHaveText("3 items left");
-      await expect(page.locator(".todo-count")).toContainText("3");
-      await expect(page.locator(".todo-count")).toHaveText(/3/);
-
-
-
-      await expect(page.locator(".view label")).toHaveText(TODO_ITEMS);
-      await checkNumberOfTodosInLocalStorage(page, 3);
-
+    await expect(page.locator(".view label")).toHaveText(TODO_ITEMS);
+    await checkNumberOfTodosInLocalStorage(page, 3);
   });
 });

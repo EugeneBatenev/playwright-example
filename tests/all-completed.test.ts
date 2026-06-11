@@ -8,14 +8,13 @@ import {
 } from "./test-utils";
 
 test.beforeEach(async ({ page }) => {
-
   await visitTestApp(page);
 });
 
 test.describe("Mark all as completed", () => {
   test.beforeEach(async ({ page }) => {
-      await createDefaultTodos(page);
-      await checkNumberOfTodosInLocalStorage(page, 3);
+    await createDefaultTodos(page);
+    await checkNumberOfTodosInLocalStorage(page, 3);
   });
 
   test.afterEach(async ({ page }) => {
@@ -23,8 +22,7 @@ test.describe("Mark all as completed", () => {
   });
 
   test("should allow me to mark all items as completed", async ({ page }) => {
-
-      await page.locator(".toggle-all").check();
+    await page.locator(".toggle-all").check();
 
     await expect(
       page.locator(".todo-list li"),
@@ -36,9 +34,8 @@ test.describe("Mark all as completed", () => {
   test("should allow me to clear the complete state of all items", async ({
     page,
   }, testInfo) => {
-
-      await page.locator(".toggle-all").check();
-      await page.locator(".toggle-all").uncheck();
+    await page.locator(".toggle-all").check();
+    await page.locator(".toggle-all").uncheck();
 
     await testInfo.attach("All-completed-unchecked", {
       body: await page.screenshot(),
@@ -55,15 +52,14 @@ test.describe("Mark all as completed", () => {
     page,
   }, testInfo) => {
     const toggleAll = page.locator(".toggle-all");
-      await toggleAll.check();
+    await toggleAll.check();
 
     await expect(toggleAll).toBeChecked();
     await checkNumberOfCompletedTodosInLocalStorage(page, 3);
 
     const firstTodo = page.locator(".todo-list li").nth(0);
-      await firstTodo.locator(".toggle").uncheck();
+    await firstTodo.locator(".toggle").uncheck();
 
-    
     await testInfo.attach("first-unchecked", {
       body: await page.screenshot(),
       contentType: "image/png",
@@ -74,8 +70,8 @@ test.describe("Mark all as completed", () => {
       "Reuse toggleAll locator and make sure its not checked."
     ).not.toBeChecked();
 
-      await firstTodo.locator(".toggle").check();
-      await checkNumberOfCompletedTodosInLocalStorage(page, 3);
+    await firstTodo.locator(".toggle").check();
+    await checkNumberOfCompletedTodosInLocalStorage(page, 3);
 
     await expect(
       toggleAll,

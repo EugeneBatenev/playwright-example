@@ -1,4 +1,4 @@
-import test, { Page } from "@playwright/test";
+import type { Page } from "@playwright/test";
 
 export const TODO_ITEMS = [
   "buy some cheese",
@@ -17,33 +17,24 @@ export async function checkNumberOfTodosInLocalStorage(
   page: Page,
   expected: number
 ) {
-  return () => {
-    async () =>
-      await page.waitForFunction((e) => {
-        return JSON.parse(localStorage["react-todos"]).length === e;
-      }, expected)
-    }
+  await page.waitForFunction((e) => {
+    return JSON.parse(localStorage["react-todos"]).length === e;
+  }, expected);
 }
 
 export async function checkNumberOfCompletedTodosInLocalStorage(
   page: Page,
   expected: number
 ) {
-  return () => {
-    async () =>
-      await page.waitForFunction((e) => {
-        
-        return (
-          JSON.parse(localStorage["react-todos"]).filter(
-            (todo: any) => todo.completed
-          ).length === e
-        );
-      }, expected)
-    }
+  await page.waitForFunction((e) => {
+    return (
+      JSON.parse(localStorage["react-todos"]).filter(
+        (todo: { completed: boolean }) => todo.completed
+      ).length === e
+    );
+  }, expected);
 }
 
 export async function visitTestApp(page: Page) {
-
-    await page.goto("https://demo.playwright.dev/todomvc");
-
+  await page.goto("https://demo.playwright.dev/todomvc");
 }
