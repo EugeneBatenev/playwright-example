@@ -50,8 +50,9 @@ jobs:
 
       - name: Download and make allurectl executable
         run: |
-          wget https://github.com/cheshi-mantu/allurectl-local-builds/releases/download/2.21.0/allurectl_linux_amd64 -O ./allurectl
-          chmod +x ./allurectl
+          wget https://github.com/cheshi-mantu/allurectl-local-builds/releases/download/2.21.0/allurectl_linux_amd64 -O ./allurectl 
+          chmod +x ./allurectl 
+          echo "${{ github.workspace }}/allurectl" >> $GITHUB_PATH
 
       - name: Log ALLURE_USERNAME
         run: echo ${{ github.event.inputs.ALLURE_USERNAME }}
