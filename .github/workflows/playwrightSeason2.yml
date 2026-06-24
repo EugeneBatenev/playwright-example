@@ -50,7 +50,7 @@ jobs:
 
       - name: Download and make allurectl executable
         run: |
-           wget https://github.com/cheshi-mantu/allurectl-local-builds/releases/download/2.21.0/allurectl_linux_amd64 -O ./allurectl 
+           wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -O ./allurectl
            chmod +x ./allurectl 
            echo "${{ github.workspace }}" >> $GITHUB_PATH
 
@@ -62,3 +62,5 @@ jobs:
         env:
           TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
           TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
+
+     # wget https://github.com/cheshi-mantu/allurectl-local-builds/releases/download/2.21.0/allurectl_linux_amd64 -O ./allurectl      
