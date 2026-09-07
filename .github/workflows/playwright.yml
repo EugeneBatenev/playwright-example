@@ -9,6 +9,9 @@ on:
       ALLURE_USERNAME:
         description: "ALLURE_USERNAME service parameter. Leave blank"
         required: false
+  push:
+    branches:
+      - master     
 
 env:
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
@@ -17,6 +20,10 @@ env:
   ALLURE_PROJECT_ID: 11844
   ALLURE_RESULTS: allure-results
   ALLURE_LAUNCH_TAGS: Tag 1
+  COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+  STARTED_BY: ${{ github.triggering_actor }}
+  ALLURE_USERNAME: ${{ github.event.inputs.ALLURE_USERNAME }}
+  
 
 jobs:
   test:
