@@ -9,6 +9,12 @@ on:
       ALLURE_USERNAME:
         description: "ALLURE_USERNAME service parameter. Leave blank"
         required: false
+      Release:
+        description: "Mock release Value"
+        required: true
+        default: 1.1.0
+
+        
   push:
     branches:
       - master     
