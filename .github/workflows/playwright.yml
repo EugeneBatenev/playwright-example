@@ -27,7 +27,7 @@ env:
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
   ALLURE_ENDPOINT: https://testing.qameta.in
-  ALLURE_PROJECT_ID: 11844
+  ALLURE_PROJECT_ID: 10950
   ALLURE_RESULTS: allure-results
   ALLURE_LAUNCH_TAGS: Tag 1
   COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
