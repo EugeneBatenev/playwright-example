@@ -61,6 +61,8 @@ jobs:
 
       - name: Log ALLURE_USERNAME
         run: echo ${{ github.event.inputs.ALLURE_USERNAME }}
+      - name: Print Release
+        run: echo "Release=${{ inputs.Release }}"
 
       - name: Run Playwright tests
         run: allurectl watch -- npx playwright test
