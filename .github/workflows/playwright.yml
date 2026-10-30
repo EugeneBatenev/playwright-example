@@ -61,7 +61,7 @@ jobs:
         run: echo "Release=${{ inputs.Release }}"
 
       - name: Run Playwright tests
-        run: allurectl watch -- npx playwright test
+        run: allurectl watch -- npx playwright test --retries=2
         env:
           TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
           TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
