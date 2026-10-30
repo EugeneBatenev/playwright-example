@@ -36,6 +36,7 @@ test.describe("New Todo", () => {
     ).toHaveText([TODO_ITEMS[0], TODO_ITEMS[1]]);
 
     await checkNumberOfTodosInLocalStorage(page, 2);
+    expect(testInfo.retry).toBe(1);
   });
 
   test("should clear text input field when an item is added", async ({ page }) => {
@@ -47,6 +48,7 @@ test.describe("New Todo", () => {
       "Check that input is empty."
     ).toBeEmpty();
     await checkNumberOfTodosInLocalStorage(page, 1);
+    expect(testInfo.retry).toBe(1);
   });
 
   test("should append new items to the bottom of the list", async ({
@@ -63,5 +65,6 @@ test.describe("New Todo", () => {
 
     await expect(page.locator(".view label")).toHaveText(TODO_ITEMS);
     await checkNumberOfTodosInLocalStorage(page, 3);
+    expect(testInfo.retry).toBe(1);
   });
 });
