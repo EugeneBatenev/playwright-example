@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "1.60.0",
-    "allure-playwright": "3.10.0"
+    "@playwright/test": "1.64.0",
+    "allure-playwright": "3.6.0"
   }
 }
